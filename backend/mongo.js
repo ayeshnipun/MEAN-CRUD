@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb+srv://ayeshnipun:ayeshnipun@cluster0-8zrdf.mongodb.net/test?retryWrites=true', (err) => {
+mongoose.connect('mongodb+srv://ayesh:ayesh@cluster0-zorpn.gcp.mongodb.net/Office?retryWrites=true', { useNewUrlParser: true }, (err) => {
 	if (!err) {
 		console.log('MongoDB connection succeeded');
 	} else {
