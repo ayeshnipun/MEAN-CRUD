@@ -1,5 +1,6 @@
 const express = require('express');
 var router = express.Router();
+var ObjectId = require('mongoose').Types.ObjectId;
 
 var { Employee } = require('../models/employee.model');
 
@@ -11,6 +12,20 @@ router.get('/', (req, res) => {
 			console.log('Error : '+ JSON.stringify(err, undefined, 2));
 		}
 	})
+})
+
+router.get('/:id', (req, res) => {
+	if (!ObjectId.isValid(req.params.id)) {
+		return res.status(400).send('No record on '+req.params.id)
+	}else{
+		Employee.findById(req.params.id, (err, doc) => {
+			if (!err) {
+				res.send(doc)
+			} else {
+				console.log('Error : '+ JSON.stringify(err, undefined, 2));
+			}
+		})
+	}
 })
 
 router.post('/', (req, res) => {
