@@ -67,4 +67,18 @@ router.put('/:id', (req, res) => {
 	})
 })
 
+router.delete('/:id', (req, res) => {
+	if (!ObjectId.isValid(req.params.id)) {
+		res.status(400).send("No Record on "+req.params.id)
+	}
+
+	Employee.findByIdAndDelete(req.params.id, (err, doc) => {
+		if (!err) {
+			res.send(doc)
+		} else {
+			console.log('Error : '+ JSON.stringify(err, undefined, 2));
+		}
+	})
+})
+
 module.exports = router
