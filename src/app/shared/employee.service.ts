@@ -19,4 +19,8 @@ export class EmployeeService {
   postEmployee(emp: Employee){
 	return this.http.post(this.baseURL, emp);
   }
+
+  getEmployees(){
+	  return this.http.get(this.baseURL);
+  }
 }
