@@ -27,4 +27,8 @@ export class EmployeeService {
   updateEmployee(emp: Employee){
 	  return this.http.put(this.baseURL + `/${emp._id}`, emp)
   }
+
+  deleteEmployee(_id: string){
+	  return this.http.delete(this.baseURL + `/${_id}`)
+  }
 }

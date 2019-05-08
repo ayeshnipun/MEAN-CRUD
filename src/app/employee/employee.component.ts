@@ -34,15 +34,18 @@ export class EmployeeComponent implements OnInit {
   }
 
   onSubmit(form : NgForm){
-	  if (form.value._id == "") {
+	  if (form.value._id == null) {
+		  console.log("object")
 		this.employeeService.postEmployee(form.value).subscribe((res) => {
 			this.resetForm(form);
-			M.toast({html: 'Saved Succesfully', classes:'rounded'})
+			M.toast({html: 'Saved Succesfully', classes:'rounded'});
+			this.refreshEmployeeList()
 		})
 	  } else {
 		 this.employeeService.updateEmployee(form.value).subscribe((res) => {
 			 this.resetForm();
-			 M.toast({html: 'Updated Succesfully', classes:'rounded'})
+			 M.toast({html: 'Updated Succesfully', classes:'rounded'});
+			 this.refreshEmployeeList()
 		 }) 
 	  }
   }
@@ -55,6 +58,16 @@ export class EmployeeComponent implements OnInit {
 
   onEdit(emp: Employee){
 	  this.employeeService.selectedEmployee = emp;
+  }
+  
+  onDelete(_id: string, form: NgForm){
+	  if (confirm("Are you sure ?") == true) {
+		  this.employeeService.deleteEmployee(_id).subscribe((res) => {
+			  this.refreshEmployeeList();
+			  this.resetForm(form);
+			  M.toast({html: 'Deleted Succesfully', classes:'rounded'});
+		  })
+	  }
   }
 
 }
