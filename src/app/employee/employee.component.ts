@@ -34,16 +34,27 @@ export class EmployeeComponent implements OnInit {
   }
 
   onSubmit(form : NgForm){
-	this.employeeService.postEmployee(form.value).subscribe((res) => {
-		this.resetForm(form);
-		M.toast({html: 'Saved Succesfully', classes:'rounded'})
-	})
+	  if (form.value._id == "") {
+		this.employeeService.postEmployee(form.value).subscribe((res) => {
+			this.resetForm(form);
+			M.toast({html: 'Saved Succesfully', classes:'rounded'})
+		})
+	  } else {
+		 this.employeeService.updateEmployee(form.value).subscribe((res) => {
+			 this.resetForm();
+			 M.toast({html: 'Updated Succesfully', classes:'rounded'})
+		 }) 
+	  }
   }
 
   refreshEmployeeList(){
 	  this.employeeService.getEmployees().subscribe((res) => {
 		  this.employeeService.employees = res as Employee[];
 	  })
+  }
+
+  onEdit(emp: Employee){
+	  this.employeeService.selectedEmployee = emp;
   }
 
 }

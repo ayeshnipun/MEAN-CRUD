@@ -23,4 +23,8 @@ export class EmployeeService {
   getEmployees(){
 	  return this.http.get(this.baseURL);
   }
+
+  updateEmployee(emp: Employee){
+	  return this.http.put(this.baseURL + `/${emp._id}`, emp)
+  }
 }
