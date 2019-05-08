@@ -10,7 +10,8 @@ import { Employee } from './employee.model';
   providedIn: 'root'
 })
 export class EmployeeService {
-	selectedEmployee : Employee;
+	// selectedEmployee : Employee;
+	selectedEmployee :Employee|{}={};
 	employee : Employee[];
 
   constructor() { }
