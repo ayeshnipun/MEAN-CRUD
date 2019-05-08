@@ -42,7 +42,7 @@ export class EmployeeComponent implements OnInit {
 
   refreshEmployeeList(){
 	  this.employeeService.getEmployees().subscribe((res) => {
-		  this.employeeService.selectedEmployee = res as Employee[];
+		  this.employeeService.employees = res as Employee[];
 	  })
   }
 

@@ -11,7 +11,7 @@ import { Employee } from './employee.model';
 })
 export class EmployeeService {
 	selectedEmployee :Employee|{}={};
-	employee : Employee[];
+	employees : Employee[];
 	readonly baseURL = 'http://localhost:4000/employees'
 
   constructor(private http: HttpClient) { }
