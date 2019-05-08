@@ -10,9 +10,13 @@ import { Employee } from './employee.model';
   providedIn: 'root'
 })
 export class EmployeeService {
-	// selectedEmployee : Employee;
 	selectedEmployee :Employee|{}={};
 	employee : Employee[];
+	readonly baseURL = 'http://localhost:4000/employees'
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
+
+  postEmployee(emp: Employee){
+	return this.http.post(this.baseURL, emp);
+  }
 }
